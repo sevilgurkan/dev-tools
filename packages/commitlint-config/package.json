@@ -18,6 +18,7 @@
   "exports": {
     ".": "./src/index.mjs"
   },
+  "module": "./src/index.mjs",
   "scripts": {
     "eslint:check": "eslint --max-warnings=0 .",
     "prettier:check": "prettier --check ."
