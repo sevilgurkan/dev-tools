@@ -1,6 +1,6 @@
 {
   "name": "@fmss/commitlint-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Commitlint config for enforcing consistent commit message conventions and rules",
   "homepage": "https://github.com/sevilgurkan/dev-tools/blob/main/packages/commitlint-config/README.md",
   "bugs": {

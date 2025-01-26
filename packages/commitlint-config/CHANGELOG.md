@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.1
+
+### Patch Changes
+
+- [`64f6576`](https://github.com/sevilgurkan/dev-tools/commit/64f6576b3d56d3f0d9b363c92831d2e41d2bea76) Thanks [@sevilgurkan](https://github.com/sevilgurkan)! - Added "module" field to package.json to improve ESM compatibility
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
