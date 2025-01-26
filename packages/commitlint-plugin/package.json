@@ -1,0 +1,38 @@
+{
+  "name": "@fmss/commitlint-plugin",
+  "version": "0.0.0",
+  "description": "Commitlint plugin for enforcing consistent commit message conventions and rules",
+  "homepage": "https://github.com/sevilgurkan/dev-tools/blob/main/packages/commitlint-plugin/README.md",
+  "bugs": {
+    "url": "https://github.com/sevilgurkan/dev-tools/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevilgurkan/dev-tools.git",
+    "directory": "packages/commitlint-plugin"
+  },
+  "license": "MIT",
+  "author": "Gürkan Sevil",
+  "sideEffects": false,
+  "type": "module",
+  "main": "src/index.mjs",
+  "module": "src/index.mjs",
+  "scripts": {
+    "eslint:check": "eslint --max-warnings=0 .",
+    "prettier:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/lint": "^19.6.0",
+    "@commitlint/rules": "^19.6.0",
+    "@commitlint/types": "^19.5.0"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0"
+  },
+  "publishConfig": {
+    "@fmss:registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}
