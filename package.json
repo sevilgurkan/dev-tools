@@ -5,9 +5,12 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "generate": "plop",
+    "generate:package": "npx plop package && npx plop docs"
   },
   "devDependencies": {
+    "plop": "^4.0.1",
     "prettier": "^3.4.2",
     "turbo": "^2.3.4",
     "typescript": "5.7.3"
