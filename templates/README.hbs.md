@@ -1,4 +1,4 @@
-[comment]: # "NOTE: This file is generated and should not be modify directly. Update `templates/ROOT_README.hbs.md` instead"
+[comment]: # 'NOTE: This file is generated and should not be modify directly. Update `templates/ROOT_README.hbs.md` instead'
 
 # FMSS Dev Tools
 
@@ -12,12 +12,24 @@ This repo is managed as a monorepo that is composed of many npm packages, where 
 
 ### Packages
 
-| Name | NPM | Size |
-| ---- | --- | ---- |
-
+<table>
+  <thead>
+    <tr>
+      <th align="left">Package</th>
+      <th align="left">Version</th>
+      <th align="left">Size</th>
+    </tr>
+  </thead>
+  <tbody>
 {{#each jsPackageNames}}
-| [{{this}}](packages/{{this}}) | [![npm version](https://badge.fury.io/js/%40fmss%2F{{this}}.svg)](https://badge.fury.io/js/%40fmss%2F{{this}}) | [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/@fmss/{{this}}.svg)](https://img.shields.io/bundlephobia/minzip/@fmss/{{this}}.svg) |
+    <tr>
+      <td align="left"><a href="packages/{{this}}"><strong>{{this}}</strong></a></td>
+      <td align="left"><a href="https://badge.fury.io/js/%40fmss%2F{{this}}"><img src="https://badge.fury.io/js/%40fmss%2F{{this}}.svg" alt="npm version"></a></td>
+      <td align="left"><a href="https://img.shields.io/bundlephobia/minzip/@fmss/{{this}}.svg"><img src="https://img.shields.io/bundlephobia/minzip/@fmss/{{this}}.svg" alt="npm bundle size"></a></td>
+    </tr>
 {{/each}}
+  </tbody>
+</table>
 
 ### Contributing
 
