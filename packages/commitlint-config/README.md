@@ -1,13 +1,13 @@
-# `@fmss/commitlint-plugin`
+# `@fmss/commitlint-config`
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE.md) [![npm version](https://badge.fury.io/js/%40fmss%2Fcommitlint-plugin.svg)](https://badge.fury.io/js/%40fmss%2Fcommitlint-plugin.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE.md) [![npm version](https://badge.fury.io/js/%40fmss%2Fcommitlint-config.svg)](https://badge.fury.io/js/%40fmss%2Fcommitlint-config.svg)
 
-Commitlint plugin for enforcing consistent commit message conventions and rules
+Commitlint config for enforcing consistent commit message conventions and rules
 
 ## Installation
 
 ```bash
-$ npm install @fmss/commitlint-plugin
+$ npm install @fmss/commitlint-config
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ $ npm install @fmss/commitlint-plugin
 Create a `.commitlintrc.js` file in your project root and use the configuration utility:
 
 ```javascript
-import {createConfig} from '@fmss/commitlint-plugin';
+import {createConfig} from '@fmss/commitlint-config';
 
 export default createConfig({
   /* Enable JIRA issue reference validation */
@@ -53,7 +53,6 @@ export default createConfig({
 | `additionalTypes`  | `string[]`                         | `[]`    | Additional commit types to allow beyond the defaults                                                                                                                     |
 | `additionalScopes` | `string[]`                         | `[]`    | Additional scopes to allow beyond the defaults                                                                                                                           |
 | `ignores`          | `((message: string) => boolean)[]` | `[]`    | Array of functions that take a commit message as a parameter and return a boolean. If any function returns true, all other rules will be skipped for that commit message |
-
 
 ### Default Commit Types
 

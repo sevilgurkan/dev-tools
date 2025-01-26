@@ -1,6 +1,6 @@
-import { createConfig } from "@fmss/commitlint-plugin";
+import {createConfig} from '@fmss/commitlint-config';
 
 export default createConfig({
-  additionalScopes: ["commitlint-plugin"],
-  ignores: [(commit) => commit.includes("Version Packages")],
+  additionalScopes: ['commitlint-config'],
+  ignores: [(commit) => commit.includes('Version Packages')],
 });

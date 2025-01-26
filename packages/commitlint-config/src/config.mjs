@@ -122,7 +122,7 @@ const baseParserPreset = {
 const baseConfig = {
   extends: ['@commitlint/config-conventional'],
   helpUrl:
-    'https://github.com/sevilgurkan/web-configs/blob/main/packages/commitlint-plugin/README.md',
+    'https://github.com/sevilgurkan/dev-tools/blob/main/packages/commitlint-config/README.md',
   parserPreset: baseParserPreset,
 };
 

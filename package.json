@@ -24,7 +24,7 @@
     "@changesets/cli": "^2.27.12",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
-    "@fmss/commitlint-plugin": "workspace:*",
+    "@fmss/commitlint-config": "workspace:*",
     "eslint": "^9.19.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",

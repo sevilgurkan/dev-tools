@@ -1,15 +1,15 @@
 {
-  "name": "@fmss/commitlint-plugin",
+  "name": "@fmss/commitlint-config",
   "version": "0.0.0",
-  "description": "Commitlint plugin for enforcing consistent commit message conventions and rules",
-  "homepage": "https://github.com/sevilgurkan/dev-tools/blob/main/packages/commitlint-plugin/README.md",
+  "description": "Commitlint config for enforcing consistent commit message conventions and rules",
+  "homepage": "https://github.com/sevilgurkan/dev-tools/blob/main/packages/commitlint-config/README.md",
   "bugs": {
     "url": "https://github.com/sevilgurkan/dev-tools/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sevilgurkan/dev-tools.git",
-    "directory": "packages/commitlint-plugin"
+    "directory": "packages/commitlint-config"
   },
   "license": "MIT",
   "author": "Gürkan Sevil",
