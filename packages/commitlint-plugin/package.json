@@ -15,8 +15,9 @@
   "author": "Gürkan Sevil",
   "sideEffects": false,
   "type": "module",
-  "main": "src/index.mjs",
-  "module": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
   "scripts": {
     "eslint:check": "eslint --max-warnings=0 .",
     "prettier:check": "prettier --check ."
