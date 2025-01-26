@@ -1,6 +1,9 @@
 {
   "name": "dev-tools",
   "private": true,
+  "description": "A collection of development tools to enhance code quality and streamline development workflows at FMSS",
+  "license": "MIT",
+  "author": "Gürkan Sevil",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -9,6 +12,7 @@
     "generate:package": "npx plop package && npx plop docs",
     "lint": "turbo lint",
     "prepare": "husky",
+    "release": "changeset publish",
     "sort-package-json-files": "sort-package-json \"**/package.json\" --ignore \"**/node_modules/**\""
   },
   "lint-staged": {
@@ -16,6 +20,8 @@
     "package.json": "sort-package-json"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.12",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@fmss/commitlint-plugin": "workspace:*",
