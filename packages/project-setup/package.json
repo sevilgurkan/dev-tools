@@ -1,6 +1,6 @@
 {
   "name": "@fmss/project-setup",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A CLI tool to automate the setup of new projects with FMSS standard configurations and dependencies",
   "homepage": "https://github.com/sevilgurkan/dev-tools/blob/main/packages/project-setup/README.md",
   "bugs": {
