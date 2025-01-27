@@ -26,6 +26,11 @@ This repo is managed as a monorepo that is composed of many npm packages, where 
       <td align="left"><a href="https://badge.fury.io/js/%40fmss%2Fcommitlint-config"><img src="https://badge.fury.io/js/%40fmss%2Fcommitlint-config.svg" alt="npm version"></a></td>
       <td align="left"><a href="https://img.shields.io/bundlephobia/minzip/@fmss/commitlint-config.svg"><img src="https://img.shields.io/bundlephobia/minzip/@fmss/commitlint-config.svg" alt="npm bundle size"></a></td>
     </tr>
+    <tr>
+      <td align="left"><a href="packages/project-setup"><strong>project-setup</strong></a></td>
+      <td align="left"><a href="https://badge.fury.io/js/%40fmss%2Fproject-setup"><img src="https://badge.fury.io/js/%40fmss%2Fproject-setup.svg" alt="npm version"></a></td>
+      <td align="left"><a href="https://img.shields.io/bundlephobia/minzip/@fmss/project-setup.svg"><img src="https://img.shields.io/bundlephobia/minzip/@fmss/project-setup.svg" alt="npm bundle size"></a></td>
+    </tr>
   </tbody>
 </table>
 
