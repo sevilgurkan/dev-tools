@@ -44,8 +44,8 @@ export const testCase: TestCase = {
   },
   [DefaultRules.TypeCase]: {
     description: 'All commit types should be lowercase.',
-    valid: ['feat: message'],
-    invalid: ['Feat: message'],
+    valid: ['feat: message', 'perf: optimize performance'],
+    invalid: ['Feat: capitalize', 'fEaT: mixed case', 'FEAT: uppercase'],
   },
   [DefaultRules.ScopeCase]: {
     description: 'Scope text must follow lowercase format.',

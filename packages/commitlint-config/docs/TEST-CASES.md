@@ -65,7 +65,13 @@ All commit types should be lowercase.
 ```shell
 ✅ feat: message
 
-❌ Feat: message
+✅ perf: optimize performance
+
+❌ Feat: capitalize
+
+❌ fEaT: mixed case
+
+❌ FEAT: uppercase
 ```
 
 ## scope-case
