@@ -16,18 +16,27 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./src/index.mjs"
+    ".": "./dist/index.js"
   },
-  "module": "./src/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
+    "build": "pnpm generate:test-docs && tsup",
     "eslint:check": "eslint --max-warnings=0 .",
-    "prettier:check": "prettier --check ."
+    "generate:test-docs": "tsx scripts/generate-test-docs.ts",
+    "prettier:check": "prettier --check .",
+    "test": "vitest",
+    "test:watch": "vitest dev"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.6.0",
     "@commitlint/lint": "^19.6.0",
     "@commitlint/rules": "^19.6.0",
-    "@commitlint/types": "^19.5.0"
+    "@commitlint/types": "^19.5.0",
+    "eslint-plugin-vitest": "^0.5.4",
+    "tsup": "^8.3.6",
+    "vitest": "^3.0.4"
   },
   "peerDependencies": {
     "@commitlint/cli": "^19.6.1",

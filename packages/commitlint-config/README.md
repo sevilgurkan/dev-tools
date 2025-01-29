@@ -10,6 +10,10 @@ Commitlint config for enforcing consistent commit message conventions and rules
 $ npm install @fmss/commitlint-config
 ```
 
+## Validation Messages
+
+For detailed examples of valid and invalid commit messages, please see [Test Cases Documentation](https://github.com/sevilgurkan/dev-tools/blob/main/packages/commitlint-config/docs/TEST-CASES.md)
+
 ## Usage
 
 Create a `.commitlintrc.js` file in your project root and use the configuration utility:
@@ -30,13 +34,10 @@ export default createConfig({
   /**
    * Add ignores (optional)
    *
-   * I was not going to add the ignores property but decided to add it for special cases.
-   * The ignores property should be an array of functions that take the commit message as a string,
-   * allow you to process this string, and return a boolean.
    * When you create a commit message, this message is passed as a parameter to the functions given in the ignores array,
    * if any of them returns true, all other rules will be skipped.
    *
-   * Not recommended unless needed for a special case
+   * NOT RECOMMENDED unless needed for a special case
    */
   ignores: [
     (message) => message.startsWith('temp:'),
