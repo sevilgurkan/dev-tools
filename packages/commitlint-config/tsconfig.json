@@ -1,0 +1,10 @@
+{
+  "extends": "@fmss/typescript-config/node-library.json",
+  "compilerOptions": {
+    "module": "es2022",
+    "verbatimModuleSyntax": true,
+    "types": ["vitest/importMeta"]
+  },
+  "include": ["src/**/*", "scripts/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
