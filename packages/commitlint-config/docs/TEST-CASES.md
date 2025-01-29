@@ -8,6 +8,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## type-enum
 
+Commit must use standard types like feat, fix, docs, etc.
+
 | Severity | When   | Value                                                                    |
 | :------- | :----- | :----------------------------------------------------------------------- |
 | Error    | always | chore,build,ci,docs,feat,fix,perf,refactor,revert,style,test,release,ops |
@@ -17,12 +19,22 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 ```shell
 ✅ feat: new feature
 
+✅ fix: auth provider
+
+✅ docs: update readme
+
+✅ perf: optimize performance
+
 ❌ random: invalid type
 
-❌ FIX: valid type wrong case
+❌ FIX: valid type with wrong case
+
+❌ e: invalid type
 ```
 
 ## type-empty
+
+A type followed by a colon is mandatory.
 
 | Severity | When  | Value |
 | :------- | :---- | :---- |
@@ -42,6 +54,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## type-case
 
+All commit types should be lowercase.
+
 | Severity | When   | Value      |
 | :------- | :----- | :--------- |
 | Error    | always | lower-case |
@@ -55,6 +69,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 ```
 
 ## scope-case
+
+Scope text must follow lowercase format.
 
 | Severity | When  | Value      |
 | :------- | :---- | :--------- |
@@ -88,6 +104,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## scope-enum
 
+Only allowed scope values are accepted.
+
 | Severity | When   | Value       |
 | :------- | :----- | :---------- |
 | Error    | always | auth,docker |
@@ -114,6 +132,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## scope-empty
 
+When scope is used, it must contain a valid value.
+
 | Severity | When  | Value |
 | :------- | :---- | :---- |
 | Warning  | never | -     |
@@ -133,14 +153,38 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ✅ test(core): message
 
-✅ ci: message
+✅ ci: message with empty scope
 
-❌ feat(): empty scope
+❌ feat(invalid-scope): message with invalid scope
 
-❌ feat( ): space in parentheses
+❌ feat(random): message
+```
+
+## scope-empty-parentheses
+
+Proper scope syntax without empty brackets.
+
+| Severity | When   | Value |
+| :------- | :----- | :---- |
+| Error    | always | -     |
+
+#### Messages
+
+```shell
+✅ feat: without scope
+
+❌ feat(: message
+
+❌ feat): message
+
+❌ feat(): message
+
+❌ feat( ): space in scope
 ```
 
 ## subject-empty
+
+Commit message requires a meaningful subject.
 
 | Severity | When  | Value |
 | :------- | :---- | :---- |
@@ -158,6 +202,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## subject-case
 
+Avoids fully capitalized subject lines.
+
 | Severity | When  | Value      |
 | :------- | :---- | :--------- |
 | Error    | never | upper-case |
@@ -174,6 +220,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## subject-full-stop
 
+No period at the end of subject line.
+
 | Severity | When  | Value |
 | :------- | :---- | :---- |
 | Error    | never | .     |
@@ -188,6 +236,8 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 
 ## body-leading-blank
 
+Requires space between subject and body.
+
 | Severity | When   | Value |
 | :------- | :----- | :---- |
 | Error    | always | -     |
@@ -201,13 +251,11 @@ body text
 
 ❌ feat: message
 body without blank
-
-❌ feat: message
-
-body with space line
 ```
 
 ## body-case
+
+Body text should not be all uppercase.
 
 | Severity | When  | Value      |
 | :------- | :---- | :--------- |
@@ -226,6 +274,8 @@ BODY TEXT
 
 ## body-max-line-length
 
+Keeps body lines within readable length.
+
 | Severity | When   | Value |
 | :------- | :----- | :---- |
 | Error    | always | 100   |
@@ -235,18 +285,20 @@ BODY TEXT
 ```shell
 ✅ feat: message
 
-short body
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmo
 
 ❌ feat: message
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-❌ feat: message
+❌ fix(infra): message
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 ```
 
 ## body-full-stop
+
+No period at the end of body text.
 
 | Severity | When  | Value |
 | :------- | :---- | :---- |
@@ -265,6 +317,8 @@ body text.
 ```
 
 ## references-empty
+
+Checks for required JIRA issue references.
 
 | Severity | When  | Value |
 | :------- | :---- | :---- |
@@ -294,6 +348,8 @@ body text.
 
 ## header-max-length
 
+Maintains readable header length.
+
 | Severity | When   | Value |
 | :------- | :----- | :---- |
 | Error    | always | 100   |
@@ -301,19 +357,15 @@ body text.
 #### Messages
 
 ```shell
-✅ docs: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-
-✅ feat: message
-
-short body
+✅ docs: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmo
 
 ❌ feat: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-❌ feat: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
 ```
 
 ## header-trim
 
+No extra spaces around header text.
+
 | Severity | When   | Value |
 | :------- | :----- | :---- |
 | Error    | always | -     |
@@ -323,44 +375,20 @@ short body
 ```shell
 ✅ feat: message
 
-short body
-
 ✅ docs: message
-
-   body text
 
 ✅ perf: message
 
-body text
-
 ❌  docs: message
 
-❌ docs: message
+❌   docs: message
 
-❌  docs: message
-```
-
-## scope-empty-parentheses
-
-| Severity | When   | Value |
-| :------- | :----- | :---- |
-| Error    | always | -     |
-
-#### Messages
-
-```shell
-✅ feat: without scope
-
-❌ feat(: message
-
-❌ feat): message
-
-❌ feat(): message
-
-❌ feat( ): space in scope
+❌     docs: message
 ```
 
 ## jira-issue-key-empty
+
+Valid JIRA issue format (JIRA-XXX) required.
 
 | Severity | When   | Value |
 | :------- | :----- | :---- |
@@ -385,13 +413,13 @@ body text
 
 ✅ feat: JIRA-992 message
 
-another message for JIRA-632
+another body message for JIRA-632
 
 ✅ feat: JIRA-15362 message
 
-JIRA-99Hz
+body JIRA-99Hz
 
-JIRA-QW23
+footer JIRA-QW23
 
 ❌ feat: JIRA566 message
 
@@ -403,9 +431,9 @@ JIRA-QW23
 
 ❌ feat: message
 
-JIRA22 message
+body JIRA22 message
 
 ❌ feat: message
 
-JIRA22 jiRa-53 JIRA- message
+body JIRA22 jiRa-53 JIRA- message
 ```

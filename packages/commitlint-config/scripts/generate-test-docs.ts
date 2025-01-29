@@ -24,12 +24,13 @@ function generateTestDocs() {
   };
 
   for (const [ruleName, values] of Object.entries(testCase)) {
-    const {valid, invalid, options} = values;
+    const {description, valid, invalid, options} = values;
 
     const config = createConfig(options);
     const [severity, when, value] = getConfigRuleDetail(config.rules, ruleName);
 
     markdown += `## ${ruleName}\n\n`;
+    markdown += `${description}\n\n`;
 
     markdown += `| Severity | When     | Value    |\n`;
     markdown += `|:---------|:---------|:---------|\n`;

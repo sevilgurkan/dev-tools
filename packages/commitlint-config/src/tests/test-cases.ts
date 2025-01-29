@@ -7,6 +7,7 @@ const jiraOptions = {
 type TestCase = Record<
   DefaultRules | ExtraRules,
   {
+    description: string;
     valid: string[];
     invalid: string[];
     options?: {
@@ -18,22 +19,36 @@ type TestCase = Record<
 
 const references = ['JIRA-123', 'JIRA-45Ab', 'JIRA-7Gh22'];
 
-const moreThan100Lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+const lorem100 = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+const lorem70 = lorem100.slice(0, 70);
 
 export const testCase: TestCase = {
   [DefaultRules.TypeEnum]: {
-    valid: ['feat: new feature'],
-    invalid: ['random: invalid type', 'FIX: valid type wrong case'],
+    description: 'Commit must use standard types like feat, fix, docs, etc.',
+    valid: [
+      'feat: new feature',
+      'fix: auth provider',
+      'docs: update readme',
+      'perf: optimize performance',
+    ],
+    invalid: [
+      'random: invalid type',
+      'FIX: valid type with wrong case',
+      'e: invalid type',
+    ],
   },
   [DefaultRules.TypeEmpty]: {
+    description: 'A type followed by a colon is mandatory.',
     valid: ['feat: add new feature', 'feat(scope): add new feature'],
     invalid: [': missing type', 'feat(): empty scope but valid type'],
   },
   [DefaultRules.TypeCase]: {
+    description: 'All commit types should be lowercase.',
     valid: ['feat: message'],
     invalid: ['Feat: message'],
   },
   [DefaultRules.ScopeCase]: {
+    description: 'Scope text must follow lowercase format.',
     valid: ['feat(k8s): pipeline', 'ci(workflow): pipeline'],
     invalid: [
       'feat(WORKFLOW): uppercase scope',
@@ -45,6 +60,7 @@ export const testCase: TestCase = {
     options: {additionalScopes: ['k8s', 'workflow']},
   },
   [DefaultRules.ScopeEnum]: {
+    description: 'Only allowed scope values are accepted.',
     valid: [
       'feat: add new feature',
       'fix(auth): google provider',
@@ -54,49 +70,68 @@ export const testCase: TestCase = {
     options: {additionalScopes: ['auth', 'docker']},
   },
   [DefaultRules.ScopeEmpty]: {
+    description: 'When scope is used, it must contain a valid value.',
     valid: [
       'feat(docs-infra): add new feature',
       'test(core): message',
-      'ci: message',
+      'ci: message with empty scope',
     ],
-    invalid: ['feat(): empty scope', 'feat( ): space in parentheses'],
+    invalid: [
+      'feat(invalid-scope): message with invalid scope',
+      'feat(random): message',
+    ],
     options: {additionalScopes: ['docs-infra', 'core']},
   },
+  [ExtraRules.ScopeEmptyParentheses]: {
+    description: 'Proper scope syntax without empty brackets.',
+    valid: ['feat: without scope'],
+    invalid: [
+      'feat(: message',
+      'feat): message',
+      'feat(): message',
+      'feat( ): space in scope',
+    ],
+  },
   [DefaultRules.SubjectEmpty]: {
+    description: 'Commit message requires a meaningful subject.',
     valid: ['feat: add new feature'],
     invalid: ['feat: ', 'feat:    '],
   },
   [DefaultRules.SubjectCase]: {
+    description: 'Avoids fully capitalized subject lines.',
     valid: ['chore: add new feature', 'refactor: MixeD sUbJEcT CASE'],
     invalid: ['docs: UPPERCASE SUBJECT'],
   },
   [DefaultRules.SubjectFullStop]: {
+    description: 'No period at the end of subject line.',
     valid: ['feat: message'],
     invalid: ['feat: message.'],
   },
   [DefaultRules.BodyLeadingBlank]: {
+    description: 'Requires space between subject and body.',
     valid: ['feat: message\n\nbody text'],
-    invalid: [
-      'feat: message\nbody without blank',
-      'feat: message\n \nbody with space line',
-    ],
+    invalid: ['feat: message\nbody without blank'],
   },
   [DefaultRules.BodyCase]: {
+    description: 'Body text should not be all uppercase.',
     valid: ['feat: message\n\nbody text'],
     invalid: ['feat: message\nBODY TEXT'],
   },
   [DefaultRules.BodyMaxLineLength]: {
-    valid: ['feat: message\n\nshort body'],
+    description: 'Keeps body lines within readable length.',
+    valid: [`feat: message\n\n${lorem70}`],
     invalid: [
-      `feat: message\n\n${moreThan100Lorem}`,
-      `feat: message\n\n${moreThan100Lorem}`,
+      `feat: message\n\n${lorem100}`,
+      `fix(infra): message\n\n${lorem100}`,
     ],
   },
   [DefaultRules.BodyFullStop]: {
+    description: 'No period at the end of body text.',
     valid: ['feat: message\n\nbody text'],
     invalid: ['feat: message\n\nbody text.'],
   },
   [DefaultRules.ReferencesEmpty]: {
+    description: 'Checks for required JIRA issue references.',
     valid: [
       `feat: ${references[0]} message`,
       `test: ${references.join(' ')} message`,
@@ -109,47 +144,32 @@ export const testCase: TestCase = {
     options: jiraOptions,
   },
   [DefaultRules.HeaderMaxLength]: {
-    valid: [
-      `docs: ${moreThan100Lorem.slice(0, 89)}`,
-      'feat: message\n\nshort body',
-    ],
-    invalid: [
-      `feat: ${moreThan100Lorem}`,
-      `feat: ${moreThan100Lorem.slice(0, 100)}`,
-    ],
+    description: 'Maintains readable header length.',
+    valid: [`docs: ${lorem70}`],
+    invalid: [`feat: ${lorem100}`],
   },
   [DefaultRules.HeaderTrim]: {
-    valid: [
-      'feat: message\n\nshort body',
-      'docs: message\n\n   body text',
-      'perf: message\n\nbody text   ',
-    ],
-    invalid: [' docs: message', 'docs: message ', ' docs: message '],
+    description: 'No extra spaces around header text.',
+    valid: ['feat: message', 'docs: message', 'perf: message'],
+    invalid: [' docs: message', '  docs: message   ', '    docs: message   '],
   },
-  [ExtraRules.ScopeEmptyParentheses]: {
-    valid: ['feat: without scope'],
-    invalid: [
-      'feat(: message',
-      'feat): message',
-      'feat(): message',
-      'feat( ): space in scope',
-    ],
-  },
+
   [ExtraRules.JiraIssueKeyEmpty]: {
+    description: 'Valid JIRA issue format (JIRA-XXX) required.',
     valid: [
       'feat: JIRA-123 message',
       'feat: JIRA-11bc JIRA-22 message',
       'feat: JIRA-54yC JIRA-22GHF JIRA-33c message',
-      'feat: JIRA-992 message\n\nanother message for JIRA-632',
-      'feat: JIRA-15362 message\n\nJIRA-99Hz\n\nJIRA-QW23',
+      'feat: JIRA-992 message\n\nanother body message for JIRA-632',
+      'feat: JIRA-15362 message\n\nbody JIRA-99Hz\n\nfooter JIRA-QW23',
     ],
     invalid: [
       `feat: JIRA566 message`,
       `feat: JIRA- message`,
       `feat: JIRA566 jiRA253 jira-253 JIRA- message`,
       `feat: JIRA-ABC 263-JIRA message`,
-      `feat: message\n\nJIRA22 message`,
-      `feat: message\n\nJIRA22 jiRa-53 JIRA- message`,
+      `feat: message\n\nbody JIRA22 message`,
+      `feat: message\n\nbody JIRA22 jiRa-53 JIRA- message`,
     ],
     options: jiraOptions,
   },
