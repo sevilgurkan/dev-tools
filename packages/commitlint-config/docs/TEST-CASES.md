@@ -12,7 +12,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :----- | :----------------------------------------------------------------------- |
 | Error    | always | chore,build,ci,docs,feat,fix,perf,refactor,revert,style,test,release,ops |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: new feature
@@ -28,7 +28,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :---- | :---- |
 | Error    | never | -     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: add new feature
@@ -46,7 +46,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :----- | :--------- |
 | Error    | always | lower-case |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -60,7 +60,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :---- | :--------- |
 | Error    | never | upper-case |
 
-### Options
+#### Options
 
 ```json
 {
@@ -68,7 +68,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 }
 ```
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat(k8s): pipeline
@@ -92,7 +92,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :----- | :---------- |
 | Error    | always | auth,docker |
 
-### Options
+#### Options
 
 ```json
 {
@@ -100,7 +100,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 }
 ```
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: add new feature
@@ -118,7 +118,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :---- | :---- |
 | Warning  | never | -     |
 
-### Options
+#### Options
 
 ```json
 {
@@ -126,7 +126,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 }
 ```
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat(docs-infra): add new feature
@@ -146,7 +146,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :---- | :---- |
 | Error    | never | -     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: add new feature
@@ -162,7 +162,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :---- | :--------- |
 | Error    | never | upper-case |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ chore: add new feature
@@ -178,7 +178,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :---- | :---- |
 | Error    | never | .     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -192,7 +192,7 @@ It is automatically generated using [generate-test-docs.ts](https://github.com/s
 | :------- | :----- | :---- |
 | Error    | always | -     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -213,7 +213,7 @@ body with space line
 | :------- | :---- | :--------- |
 | Error    | never | upper-case |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -230,7 +230,7 @@ BODY TEXT
 | :------- | :----- | :---- |
 | Error    | always | 100   |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -252,7 +252,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 | :------- | :---- | :---- |
 | Error    | never | .     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -270,7 +270,7 @@ body text.
 | :------- | :---- | :---- |
 | Error    | never | -     |
 
-### Options
+#### Options
 
 ```json
 {
@@ -278,7 +278,7 @@ body text.
 }
 ```
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: JIRA-123 message
@@ -298,7 +298,7 @@ body text.
 | :------- | :----- | :---- |
 | Error    | always | 100   |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ docs: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
@@ -318,7 +318,7 @@ short body
 | :------- | :----- | :---- |
 | Error    | always | -     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: message
@@ -346,7 +346,7 @@ body text
 | :------- | :----- | :---- |
 | Error    | always | -     |
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: without scope
@@ -366,7 +366,7 @@ body text
 | :------- | :----- | :---- |
 | Error    | always | -     |
 
-### Options
+#### Options
 
 ```json
 {
@@ -374,7 +374,7 @@ body text
 }
 ```
 
-### Messages
+#### Messages
 
 ```shell
 ✅ feat: JIRA-123 message

@@ -36,10 +36,10 @@ function generateTestDocs() {
     markdown += `|${RuleConfigSeverity[severity] || '-'}|${when || '-'}|${value || '-'}|\n`;
 
     if (options) {
-      markdown += `### Options\n${codeBlock(JSON.stringify(options, null, 2))}\n\n`;
+      markdown += `#### Options\n${codeBlock(JSON.stringify(options, null, 2))}\n\n`;
     }
 
-    markdown += `### Messages\n\n`;
+    markdown += `#### Messages\n\n`;
 
     let messages = valid.map((msg) => `✅ ${msg}\n\n`).join('');
     messages += invalid.map((msg) => `❌ ${msg}`).join('\n\n');
