@@ -1,16 +1,13 @@
 import {defineConfig} from 'tsup';
 
 export default defineConfig([
-  // CLI build yapılandırması
   {
     entry: ['scripts/setup.ts'],
-    format: ['esm'],
+    format: ['cjs', 'esm'],
     outDir: 'bin',
     platform: 'node',
+    dts: true,
     clean: true,
-    minify: true,
-    treeshake: true,
-    splitting: true,
     banner: {
       js: '#!/usr/bin/env node',
     },
