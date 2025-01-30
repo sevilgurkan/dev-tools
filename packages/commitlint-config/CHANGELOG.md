@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0
+
+### Major Changes
+
+- [`208a208`](https://github.com/sevilgurkan/dev-tools/commit/208a20808d1d7dcc23ba2d0f56f717f53a956ed0) Thanks [@sevilgurkan](https://github.com/sevilgurkan)! - This is the first major release (v1.1.0) of our commitlint configuration package that provides:
+   - Standardized commit message format across projects
+
+  - Comprehensive commit message rules and conventions
+  - Enhanced commit message quality and consistency
+  - Easy-to-follow standards for development teams
+  - Seamless integration with existing development workflows
+
+  This configuration helps maintain consistent and meaningful commit history while improving collaboration and code maintenance across teams.
+
 ## 0.1.0
 
 ### Minor Changes
