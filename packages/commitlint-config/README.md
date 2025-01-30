@@ -34,8 +34,9 @@ export default createConfig({
   /**
    * Add ignores (optional)
    *
-   * When you create a commit message, this message is passed as a parameter to the functions given in the ignores array,
-   * if any of them returns true, all other rules will be skipped.
+   * When you create a commit message, this message is passed as a parameter
+   * to the functions given in the ignores array, if any of them returns true,
+   * all other rules will be skipped.
    *
    * NOT RECOMMENDED unless needed for a special case
    */
