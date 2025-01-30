@@ -8,17 +8,11 @@ export default defineConfig([
     outDir: 'bin',
     platform: 'node',
     clean: true,
+    minify: true,
+    treeshake: true,
+    splitting: true,
     banner: {
       js: '#!/usr/bin/env node',
     },
-  },
-  // Library build yapılandırması
-  {
-    entry: ['scripts/setup.ts'],
-    format: ['esm'],
-    dts: true,
-    outDir: 'dist',
-    platform: 'node',
-    sourcemap: true,
   },
 ]);

@@ -1,5 +1,3 @@
-import {generateCommitlintConfig} from '../templates';
-
 export const CONFIG = {
   dependencies: {
     required: [

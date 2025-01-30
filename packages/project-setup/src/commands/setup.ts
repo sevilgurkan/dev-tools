@@ -1,24 +1,21 @@
-import fs from 'fs';
 import path from 'path';
 
+import fs from 'fs-extra';
 import chalk from 'chalk';
 import ora from 'ora';
 import {execa} from 'execa';
-import {Command} from 'commander';
 
-import {
-  Logger,
-  FileUtils,
-  mapError,
-  getPackageManager,
-  getOptions,
-  SetupOptions,
-  rootDir,
-} from '../utils';
+import {Logger, mapError, rootDir} from '../utils';
+import type {SetupOptions} from '../types';
 import {CONFIG} from '../config';
-import {generateCommitlintConfig} from '../templates';
+import {getOptions} from '../utils/get-options';
+import {getCommandLineArgs} from '../utils/get-command-line-args';
 
-async function installDependencies({pm}: SetupOptions) {
+import {setupHusky} from './husky';
+import {setupCommitlint} from './commitlint';
+import {setupLintStaged} from './lint-staged';
+
+async function installDependencies({cwd, pm}: SetupOptions) {
   const dependencies = [
     'husky',
     'lint-staged',
@@ -32,7 +29,9 @@ async function installDependencies({pm}: SetupOptions) {
     const installCommand = pm === 'yarn' ? 'add' : 'install';
     const devFlag = pm === 'yarn' ? '--dev' : '-D';
 
-    await execa(pm, [installCommand, devFlag, ...dependencies]);
+    await execa({
+      cwd,
+    })`${pm} ${installCommand} ${devFlag} ${dependencies.join(' ')}`;
 
     Logger.success('✅ Dependencies installed successfully!\n');
   } catch (error) {
@@ -42,117 +41,17 @@ async function installDependencies({pm}: SetupOptions) {
   }
 }
 
-async function setupHusky({pm}: SetupOptions) {
-  const packageJsonPath = path.join(rootDir, 'package.json');
-
-  try {
-    const packageJson = FileUtils.readJsonFile(packageJsonPath);
-
-    if (!packageJson.scripts) {
-      packageJson.scripts = {};
-    }
-
-    packageJson.scripts.prepare = 'husky';
-
-    FileUtils.writeJsonFile(packageJsonPath, packageJson);
-
-    const huskyInitCommand = {
-      npm: 'npx',
-      yarn: 'yarn',
-      pnpm: 'pnpm',
-    };
-
-    await execa(huskyInitCommand[pm], ['husky', 'init']);
-
-    const huskyDirPath = path.join(rootDir, '.husky');
-    FileUtils.ensureDirectoryExists(huskyDirPath);
-
-    const pmExecCommand = {
-      npm: 'npx',
-      pnpm: 'pnpm dlx',
-      yarn: 'yarn',
-    };
-
-    const hooks = [
-      {
-        name: 'commit-msg',
-        command: [
-          pmExecCommand[pm],
-          pm === 'npm' ? '--no --' : '',
-          'commitlint --edit $1',
-        ]
-          .filter(Boolean)
-          .join(' '),
-      },
-      {
-        name: 'pre-commit',
-        command: [pmExecCommand[pm], 'lint-staged'].filter(Boolean).join(' '),
-      },
-    ];
-
-    hooks.forEach(({name, command}) => {
-      const hookFilePath = path.join(huskyDirPath, name);
-      FileUtils.writeFile(hookFilePath, command);
-    });
-
-    // Make hooks executable on Unix-like systems
-    if (process.platform !== 'win32') {
-      for (const {name} of hooks) {
-        const hookFilePath = path.join(huskyDirPath, name);
-        await execa('chmod', ['+x', hookFilePath]);
-      }
-    }
-  } catch (error) {
-    Logger.error(`❌ Failed to setup Husky: ${mapError(error)}`);
-    process.exit(1);
-  }
-}
-
-async function setupCommitlint({useBitbucket, pm}: SetupOptions) {
-  try {
-    const commitlintConfigFilePath = path.join(rootDir, '.commitlintrc.js');
-    const template = await generateCommitlintConfig({useBitbucket, pm});
-
-    FileUtils.writeFile(commitlintConfigFilePath, template);
-  } catch (error) {
-    Logger.error(`❌ Failed to setup Commitlint: ${mapError(error)}`);
-    process.exit(1);
-  }
-}
-
-async function setupLintStaged() {
-  const packageJsonPath = path.join(rootDir, 'package.json');
-
-  try {
-    if (!fs.existsSync(packageJsonPath)) {
-      Logger.error('package.json not found');
-      process.exit(1);
-    }
-
-    const packageJson = FileUtils.readJsonFile(packageJsonPath);
-
-    packageJson['lint-staged'] = CONFIG.lintStaged;
-    FileUtils.writeJsonFile(packageJsonPath, packageJson);
-  } catch (error) {
-    Logger.error(`❌ Failed to setup lint-staged: ${mapError(error)}`);
-    process.exit(1);
-  }
-}
-
-export async function setup() {
+export async function setup(initialOptions?: SetupOptions) {
   Logger.info('🚀 Starting @fmss/commit-manager setup...');
 
   try {
     // checkRequiredFiles();
 
-    const cliArgs = await getCommandLineArgs();
+    const options = initialOptions
+      ? initialOptions
+      : await getOptions(getCommandLineArgs());
 
-    const options = await getOptions(cliArgs);
-
-    // const options = cliArgs;
-    console.log(options);
-
-    await installDependencies(options);
+    // await installDependencies(options);
 
     await runSetupSteps(options);
 
@@ -180,7 +79,7 @@ async function runSetupSteps(options: SetupOptions) {
     },
     {
       title: '🎯 Setting up lint-staged...',
-      action: () => setupLintStaged(),
+      action: () => setupLintStaged(options),
       successText: '✅ Lint-staged setup completed',
     },
   ];
@@ -204,30 +103,13 @@ async function runSetupSteps(options: SetupOptions) {
   }
 }
 
-async function getCommandLineArgs() {
-  const program = new Command();
-
-  program
-    .option('--pm, --package-manager <type>', 'Package manager to use')
-    .option('-b, --bitbucket', 'Use Bitbucket configuration', false);
-
-  program.parse(process.argv);
-
-  const options = program.opts();
-
-  return {
-    pm: options.packageManager,
-    useBitbucket: options.bitbucket,
-  };
-}
-
-function checkRequiredFiles() {
+async function checkRequiredFiles() {
   const requiredDeps = ['prettier', 'eslint'];
 
   const packageJsonPath = path.join(rootDir, 'package.json');
 
   try {
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    const packageJson = await fs.readJSON(packageJsonPath);
 
     const dependencies = {
       ...packageJson?.dependencies,
@@ -253,27 +135,3 @@ function checkRequiredFiles() {
     process.exit(1);
   }
 }
-
-(async () => {
-  if (import.meta.url === `file://${process.argv[1]}`) {
-    const pm = await getPackageManager();
-
-    const isNpx = process.env._?.includes('npx');
-    const isPnpmDlx =
-      process.env._?.includes('pnpm') && process.argv[1].includes('.pnpm');
-    const isYarnDlx =
-      process.env._?.includes('yarn') && process.argv[1].includes('.yarn');
-
-    if (pm || isNpx || isPnpmDlx || isYarnDlx) {
-      setup();
-      return;
-    }
-
-    Logger.error('❌ Setup failed');
-    process.exit(1);
-  }
-})();
-
-process.on('SIGINT', () => {
-  process.exit(0);
-});

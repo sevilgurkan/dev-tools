@@ -1,25 +1,21 @@
 import prettier from 'prettier';
-import {execa} from 'execa';
 
-import type {PackageManager} from '../types';
+import {SetupOptions} from '../types';
 
-export async function generateCommitlintConfig({
-  useBitbucket = false,
+export async function generateCommitlintTemplate({
+  useBitbucket,
   pm,
-}: {
-  useBitbucket?: boolean;
-  pm: PackageManager;
-}) {
-  const installCommand = pm === 'yarn' ? 'add' : 'install';
-  const devFlag = pm === 'yarn' ? '--dev' : '-D';
+}: SetupOptions) {
+  // const installCommand = pm === 'yarn' ? 'add' : 'install';
+  // const devFlag = pm === 'yarn' ? '--dev' : '-D';
 
-  await execa(pm, [
-    installCommand,
-    devFlag,
-    '@fmss/commitlint-config',
-    '@commitlint/cli',
-    '@commitlint/config-conventional',
-  ]);
+  // await execa(pm, [
+  //   installCommand,
+  //   devFlag,
+  //   '@fmss/commitlint-config',
+  //   '@commitlint/cli',
+  //   '@commitlint/config-conventional',
+  // ]);
 
   const template = `
   import { createConfig } from '@fmss/commitlint-config';
@@ -28,6 +24,8 @@ export async function generateCommitlintConfig({
     requireJira: ${useBitbucket ? true : false},
     additionalTypes: [],
     additionalScopes: [],
+
+    // NOT RECOMMENDED unless needed for a special case
     ignores: []
   })
   `;

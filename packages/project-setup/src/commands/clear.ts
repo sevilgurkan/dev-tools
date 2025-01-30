@@ -1,13 +1,13 @@
 import path from 'path';
-import fs from 'fs';
 import {fileURLToPath} from 'url';
 import {execSync} from 'child_process';
 
+import fs from 'fs-extra';
 import {execa} from 'execa';
 import {rimraf} from 'rimraf';
 import inquirer from 'inquirer';
 
-import {getPackageManager} from '../utils';
+import {getPackageManager} from '../utils/get-package-manager';
 
 (async () => {
   console.log('Clearing...');
@@ -25,7 +25,7 @@ import {getPackageManager} from '../utils';
   ];
 
   const packageJsonPath = path.resolve(__dirname, '..', 'package.json');
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+  const packageJson = await fs.readJSON(packageJsonPath);
 
   delete packageJson.scripts.prepare;
   delete packageJson['lint-staged'];
@@ -36,7 +36,7 @@ import {getPackageManager} from '../utils';
     delete packageJson.scripts.postpack;
   }
 
-  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  await fs.writeFile(packageJsonPath, packageJson);
 
   const uninstallCommand = pm === 'yarn' ? 'remove' : 'uninstall';
 
