@@ -14,7 +14,6 @@ export async function generateCommitlintTemplate({
   //   devFlag,
   //   '@fmss/commitlint-config',
   //   '@commitlint/cli',
-  //   '@commitlint/config-conventional',
   // ]);
 
   const template = `

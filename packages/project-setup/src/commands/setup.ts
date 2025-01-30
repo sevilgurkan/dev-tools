@@ -16,12 +16,7 @@ import {setupCommitlint} from './commitlint';
 import {setupLintStaged} from './lint-staged';
 
 async function installDependencies({cwd, pm}: SetupOptions) {
-  const dependencies = [
-    'husky',
-    'lint-staged',
-    '@commitlint/cli',
-    '@commitlint/config-conventional',
-  ];
+  const dependencies = ['husky', 'lint-staged', '@commitlint/cli'];
 
   Logger.info('📦 Installing required dependencies...');
 

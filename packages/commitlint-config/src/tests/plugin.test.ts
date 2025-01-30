@@ -17,7 +17,6 @@ const commitLint = async (message: string, opts: CreateConfigOptions = {}) => {
       '@fmss': {
         rules: {
           ...plugin.rules,
-          // 'test-rule': testRule,
         },
       },
     },
@@ -29,7 +28,6 @@ const commitLint = async (message: string, opts: CreateConfigOptions = {}) => {
     message,
     {
       ...rules,
-      // 'test-rule': [RuleConfigSeverity.Warning, 'always'],
     },
     options,
   );

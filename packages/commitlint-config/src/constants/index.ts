@@ -20,6 +20,4 @@ export const DEFAULT_TYPES = [
 
 export enum Messages {
   EMPTY_PARENT_SCOPE = 'Commit message cannot contain empty parentheses. Either provide a scope or remove the parentheses',
-  NON_JIRA_PREFIX = 'Only JIRA- prefix is allowed in commit messages. Other issue prefixes (like FAS-, ABC-, etc.) are not allowed.',
-  MISSING_JIRA_KEY = 'Message must contain one or more JIRA issue keys',
 }

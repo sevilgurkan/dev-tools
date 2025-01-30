@@ -42,16 +42,6 @@ module.exports = function plopfile(plop) {
         path: 'packages/{{kebabCase name}}/src/index.js',
         templateFile: 'templates/index.hbs',
       },
-      {
-        type: 'add',
-        path: 'packages/{{kebabCase name}}/src/{{properCase name}}.js',
-        templateFile: 'templates/my-package.hbs.js',
-      },
-      {
-        type: 'add',
-        path: 'packages/{{kebabCase name}}/src/tests/{{properCase name}}.test.js',
-        templateFile: 'templates/test.hbs.js',
-      },
     ],
   });
 

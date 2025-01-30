@@ -1,11 +1,6 @@
 export const CONFIG = {
   dependencies: {
-    required: [
-      'husky',
-      'lint-staged',
-      '@commitlint/cli',
-      '@commitlint/config-conventional',
-    ],
+    required: ['husky', 'lint-staged', '@commitlint/cli'],
     development: ['prettier', 'eslint'],
   },
   helpUrl:
@@ -50,6 +45,5 @@ export const DEPENDENCIES = [
   'husky',
   'lint-staged',
   '@commitlint/cli',
-  '@commitlint/config-conventional',
   PLUGIN_PACKAGE_NAME,
 ];

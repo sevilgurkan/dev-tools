@@ -68,4 +68,3 @@ export interface ExtraRulesConfig<V = RuleConfigQuality.User> {
 }
 
 export type PluginRulesConfig = DefaultRulesConfig & ExtraRulesConfig;
-export type PluginRuleNames = keyof PluginRulesConfig;

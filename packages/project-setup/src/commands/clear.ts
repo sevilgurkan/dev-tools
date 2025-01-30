@@ -17,12 +17,7 @@ import {getPackageManager} from '../utils/get-package-manager';
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
-  const dependencies = [
-    'husky',
-    'lint-staged',
-    '@commitlint/cli',
-    '@commitlint/config-conventional',
-  ];
+  const dependencies = ['husky', 'lint-staged', '@commitlint/cli'];
 
   const packageJsonPath = path.resolve(__dirname, '..', 'package.json');
   const packageJson = await fs.readJSON(packageJsonPath);

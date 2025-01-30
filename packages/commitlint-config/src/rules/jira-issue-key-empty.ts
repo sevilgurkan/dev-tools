@@ -1,7 +1,7 @@
 import type {Rule} from '@commitlint/types';
 
 import {SKIP_RULE} from '../constants';
-// import rules from '@commitlint/rules';
+
 // import {SKIP_RULE} from '../constants';
 
 // const JIRA_PATTERN = /^JIRA-\d+(\s+JIRA-\d+)*\s+/;
