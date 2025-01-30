@@ -6,6 +6,7 @@
   "author": "Gürkan Sevil",
   "scripts": {
     "build": "turbo build",
+    "clean": "rm -rf node_modules && rm -rf .turbo",
     "dev": "turbo dev",
     "eslint:check": "eslint . && turbo run eslint:check",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
