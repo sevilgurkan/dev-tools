@@ -25,6 +25,7 @@
     "prepare": "husky",
     "setup": "tsx scripts/setup.ts",
     "test": "vitest",
+    "test:generate-templates": "tsx scripts/generate-test-templates.ts",
     "test:watch": "vitest dev"
   },
   "lint-staged": {
