@@ -10,6 +10,5 @@ export default defineConfig({
     environment: 'node',
     typecheck: {enabled: true},
     restoreMocks: true,
-    testTimeout: 50000,
   },
 });

@@ -3,7 +3,7 @@ import {defineConfig} from 'tsup';
 export default defineConfig([
   {
     entry: ['scripts/setup.ts'],
-    format: ['cjs', 'esm'],
+    format: ['esm'],
     outDir: 'bin',
     platform: 'node',
     dts: true,
